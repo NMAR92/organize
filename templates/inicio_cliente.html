@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="stylesheet" href="/static/css/inicio.css"/>
+   <title>Organize</title>
+   <link rel="icon" type="/static/css/img/favicon.ico" href="/static/img/favicon.ico">
+ </head>
+ <body>
+   <nav class="navbar">
+     <!-- LOGO -->
+
+     <div class="title"><h1>Organize Cliente</h1></div>
+     <!-- NAVIGATION MENU -->
+     <ul class="nav-links">
+       <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!-- NAVIGATION MENUS -->
+       <div class="menu">
+         <li class="services">
+           <a href="/inicio_cliente">Agendas</a>
+           <ul class="dropdown">
+             <li><a href="/inicio_cliente">Con empresas </a></li>
+<!--             <li><a href="/inicio_cliente">Personal</a></li>-->
+           </ul>
+         </li>
+         <li class="services">
+           <a href="/inicio_cliente">Usuario</a>
+           <ul class="dropdown">
+             <li><a href="{{url_for('actualizar_usuario')}}">Actualizar </a></li>
+             <li><a href="{{url_for('borrar_usuario')}}">Borrar</a></li>
+             <li><a href="/logout">Logout</a></li>
+           </ul>
+         </li>
+         <li><a href="/nosotros_cli">Nosotros</a></li>
+       </div>
+     </ul>
+   </nav>
+   <div class="title"><h2>-Bienvenido a Organize {{usuario['nombre']}}-</h2></div>
+   <br>
+   <div class="title"><h3>Agenda con Empresas</h3></div>
+                         <form action="" method="post" autocomplete="off">
+                            <table class="table" border="1" style="margin: 0.5em auto;">
+                                <thead>
+                                    <tr>
+<!--                                        <th scope="col">ID</th>-->
+                                        <th scope="col">Empresa</th>
+                                        <th scope="col">Fecha-Hora</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+<!--                                        <td></td>-->
+                                        <td>
+                                            <select name="empresa" id="empresa" value="empresa" class="select"  onchange="func()"><option value=""> Seleccionar empresa</option>
+                                            {% for empresa in empresas %}<option value="{{ empresa['nombre'] }}">{{empresa['nombre']}}</option>
+                                            {% endfor %}</select>
+                                        </td>
+                                        <td>
+                                            <select name="fecha_hora" id="fecha_hora" value="fecha_hora" class="select" ><option value=""> Seleccionar fecha y hora</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                                <button type="submit" class="btn btn-outline-success my-2 my-sm-0" formaction="/inicio_cliente/agregar">Agregar</button>
+                                        </td>
+                                    </tr>
+                                    {% for horario in horarios %}
+                                        <tr>
+<!--                                            <td scope="row">{{horario.agendar_cli_id}}</td>-->
+                                            <td>{{horario.empresa}}</td>
+                                            <td>{{horario.fecha_hora}}</td>
+                                            <td>
+                                                <form method="post">
+                                                    <button type="submit" class="btn btn-danger" formaction="/inicio_cliente/{{horario.agendar_cli_id}}/eliminar">Eliminar</button>
+                                                </form>
+                                                <form method="get">
+                                                    <button type="submit" class="btn btn-info" formaction="/inicio_cliente/{{horario.agendar_cli_id}}/editar">Editar</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+   <br>
+   <br>
+   <br>
+       <div class="footer">
+           <table class="table_1">
+               <thead>
+                <tr>
+                    <th><a href="/formulario_contacto">Formulario de contacto</a></th>
+                    <th><img src="/static/img/logo_chico_organize.png" /></th>
+                    <th><ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul></th>
+                </tr>
+               </thead>
+           </table>
+       </div>
+
+
+</body>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+
+
+function func() {
+var selectEmpresa = document.getElementById("empresa").value;
+$.ajax ({
+   url: '/fecha_hora',
+   type: 'POST',
+   contentType: 'application/json',
+   data: JSON.stringify({empresa: selectEmpresa}),
+   dataType:"json",
+   success: function (response) {
+       console.log(response, response["agenda"], response["agenda"][0], typeof response["agenda"][0]  );
+
+       var select_horarios = document.getElementById("fecha_hora");
+       for (var i in response["agenda"]) {
+          $(select_horarios).append('<option value="' + response["agenda"][i] + '">' + response["agenda"][i] + '</option>');
+       }
+<!--      // Set selected value-->
+<!--      $(select_horarios).val(response["agenda"][i]);-->
+   },
+   error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown)
+   }
+});
+console.log("el post"+JSON.stringify({empresa: selectEmpresa}));
+}
+ </script>
+</html>

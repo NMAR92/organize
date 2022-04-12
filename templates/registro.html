@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Organize</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/login_1.css" rel="stylesheet" media="screen">
+    <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h1>Registro de usuarios</h1>
+        <div class="fadeIn first">
+            <img src="static/img/logo_organize.png" height="100" width="98"/>
+        </div>
+        <form action="" method="post" autocomplete="off">
+            <input type="text"
+                   id="nombre"
+                   class="fadeIn second"
+                   name="nombre"
+                   placeholder="usuario"
+                   value="{{ request.form.nombre }}" required>
+            <input type="text"
+                   id="clave"
+                   class="fadeIn third"
+                   name="clave"
+                   placeholder="contraseña"
+                   value="{{ request.form.clave }}" required>
+            <input type="text"
+                   id="mail"
+                   class="fadeIn third"
+                   name="mail"
+                   placeholder="mail"
+                   value="{{ request.form.mail }}" required>
+            <select name="tipo_suscripcion_id" id="tipo_suscripcion_id" value="{{ request.form.tipo_suscripcion_id }}" required>
+                <option value=""> Elige un tipo de suscripción</option>
+                <option value=1>Cliente</option>
+                <option value=2>Emprendedor</option>
+            </select>
+            <input type="submit" class="fadeIn fourth" value="Registrarse">
+        </form>
+
+        {% if error %}
+            <p><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+    </div>
+</div>
+</body>
+
+</html>

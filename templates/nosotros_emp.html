@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="stylesheet" href="/static/css/inicio.css"/>
+   <title>Organize</title>
+      <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+ </head>
+ <body>
+   <nav class="navbar">
+     <!-- LOGO -->
+     <div class="title"><h1>Organize Emprendedor</h1></div>
+     <!-- NAVIGATION MENU -->
+     <ul class="nav-links">
+       <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!-- NAVIGATION MENUS -->
+       <div class="menu">
+         <li class="services">
+           <a href="/">Agendas</a>
+           <ul class="dropdown">
+             <li><a href="/inicio_emp">Con cliente </a></li>
+             <li><a href="/inicio_emp_emp">Con mi empresa</a></li>
+             <li><a href="/inicio_ag_emp">Agenda a ofrecer</a></li>
+           </ul>
+         </li>
+         <li class="services">
+           <a href="/inicio_cliente">Usuario</a>
+           <ul class="dropdown">
+             <li><a href="{{url_for('actualizar_usuario')}}">Actualizar </a></li>
+             <li><a href="{{url_for('borrar_usuario')}}">Borrar</a></li>
+             <li><a href="/logout">Logout</a></li>
+           </ul>
+         </li>
+         <li><a href="/nosotros_emp">Nosotros</a></li>
+       </div>
+     </ul>
+   </nav>
+   <div class="padre">
+       <div class="hijo">Organize es una apliación web de gestión de agendas para emprendedores y sus clientes. <br>
+       Permite al emprendedor visualizar que agendas a concretado con sus clientes y planificar actividades vinculadas a su emprendimiento. <br>
+       El cliente puede optar por los distintos emprendedores que forman parte de la plataforma de Organize y generar las agendas de su interes. <br>
+       <br>
+       Organize crece entre todos. No dejes de unirte!!
+       </div>
+   </div>
+
+       <div class="footer">
+           <table class="table_1">
+               <thead>
+                <tr>
+                    <th><a href="/formulario_contacto">Formulario de contacto</a></th>
+                    <th><img src="static/img/logo_chico_organize.png" /></th>
+                    <th><ul class="social-icon">
+                        <li class="social-icon__item"><a class="social-icon__link" href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                        <li class="social-icon__item"><a class="social-icon__link" href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                        <li class="social-icon__item"><a class="social-icon__link" href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                        <li class="social-icon__item"><a class="social-icon__link" href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                    </ul></th>
+                </tr>
+               </thead>
+           </table>
+       </div>
+
+
+</body>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</html>

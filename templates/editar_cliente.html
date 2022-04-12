@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Organize</title>
+    <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/login.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h3>Edición de agenda Num. {{ agendar_cli_id }} </h3>
+        <form method="post">
+                <select name="empresa" id="empresa" value="empresa" class="select"  onchange="func()"><option value=""> Seleccionar empresa</option>
+                {% for empresa in empresas %}<option value="{{ empresa['nombre'] }}">{{empresa['nombre']}}</option>
+                {% endfor %}</select>
+            <select name="fecha_hora" id="fecha_hora" value="fecha_hora" class="select" ><option value=""> Seleccionar fecha y hora</option>
+            </select>
+        <br></br>
+                <input type="submit" class="fadeIn fourth" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+</body>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+
+console.log("Hola colorado capo");
+function func() {
+var selectEmpresa = document.getElementById("empresa").value;
+$.ajax ({
+   url: '/fecha_hora',
+   type: 'POST',
+   contentType: 'application/json',
+   data: JSON.stringify({empresa: selectEmpresa}),
+   dataType:"json",
+   success: function (response) {
+       console.log("respuesta", response);
+       var select_horarios = document.getElementById("fecha_hora");
+       for (var i in response["agenda"]) {
+          $(select_horarios).append('<option value="' + response["agenda"][i] + '">' + response["agenda"][i] + '</option>');
+       }
+      $(select_horarios).val(response["agenda"][1]);
+   },
+   error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown)
+   }
+});
+console.log("el post"+JSON.stringify({empresa: selectEmpresa}));
+}
+ </script>
+</html>

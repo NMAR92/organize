@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Organize</title>
+    <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/login.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h3>Edición de actividad Num. {{ agendar_emp_id }} </h3>
+        <div class="fadeIn first">
+
+        </div>
+        <form action="" method="post" autocomplete="off">
+            <input type="number" id="nivel_prioridad" name="nivel_prioridad" value="{{request.form.nivel_prioridad}}"
+                   class="form-control" required/>
+            <input type="text" id="actividad" name="actividad" value="{{request.form.actividad}}" class="form-control"
+                   required/>
+            <input type="date" id="fecha" name="fecha" value="{{request.form.fecha}}" class="form-control" required/>
+            <input type="time" id="hora" name="hora" value="{{request.form.hora}}" class="form-control" required/>
+            <input type="text" id="insumo" name="insumo" value="{{request.form.insumo}}" class="form-control" required/>
+            <input type="submit" class="fadeIn fourth" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+</body>
+</html>

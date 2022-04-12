@@ -1,0 +1,315 @@
+
+
+/* UTILITIES */
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+html {
+  background-image: url(/static/img/fondo.jpg);
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body {
+  height: 100%;
+}
+
+a {
+ text-decoration: none;
+}
+li {
+ list-style: none;
+}
+
+/* NAVBAR STYLING STARTS */
+.navbar {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 20px;
+ background-color: teal;
+ color: #fff;
+}
+.nav-links a {
+ color: #fff;
+}
+/* LOGO */
+.logo{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ text-decoration:none;
+}
+
+.title h1{
+ color: rgba(192, 184, 184, 0.789);
+ font: 2.1em sans-serif;
+ text-align: left;
+ text-shadow: 0px 0px 6px rgb(255, 255, 255);
+ color: white;
+}
+
+.title h2{
+  color:#000;
+  text-align:center;
+  font-size:1.5em;
+  text-shadow: 0px 0px 6px rgb(255, 255, 255);
+  margin: 0.5em;
+}
+
+.title h3{
+  color:teal;
+  text-align:center;
+  font-size:1.5em;
+  text-shadow: 0px 0px 6px rgb(255, 255, 255);
+  margin: 0.5em;
+}
+
+/* NAVBAR MENU */
+.menu {
+ display: flex;
+ gap: 1em;
+ font: 18px sans-serif;
+ }
+.menu li:hover {
+ background-color: #4c9e9e;
+ border-radius: 5px;
+ transition: 0.3s ease;
+}
+.menu li {
+ padding: 5px 14px;
+}
+/* DROPDOWN MENU */
+.services {
+ position: relative;
+}
+.dropdown {
+ background-color: rgb(1, 139, 139);
+ padding: 1em 0;
+ position: absolute; /*WITH RESPECT TO PARENT*/
+ display: none;
+ border-radius: 8px;
+ top: 35px;
+}
+.dropdown li + li {
+ margin-top: 10px;
+}
+.dropdown li {
+ padding: 0.5em 1em;
+ width: 8em;
+ text-align: center;
+}
+.dropdown li:hover {
+ background-color: #4c9e9e;
+}
+.services:hover .dropdown {
+ display: block;
+}
+
+/*RESPONSIVE NAVBAR MENU STARTS*/
+/* CHECKBOX HACK */
+input[type=checkbox]{
+ display: none;
+}
+/*HAMBURGER MENU*/
+.hamburger {
+ display: none;
+ font-size: 24px;
+ user-select: none;
+}
+/* APPLYING MEDIA QUERIES */
+@media (max-width: 768px) {
+.menu {
+ display:none;
+ position: absolute;
+ background-color:teal;
+ right: 0;
+ left: 0;
+ text-align: center;
+ padding: 16px 0;
+}
+.menu li:hover {
+ display: inline-block;
+ background-color:#4c9e9e;
+ transition: 0.3s ease;
+}
+.menu li + li {
+ margin-top: 12px;
+}
+input[type=checkbox]:checked ~ .menu{
+ display: block;
+}
+.hamburger {
+ display: block;
+}
+.dropdown {
+ left: 50%;
+ top: 30px;
+ transform: translateX(35%);
+}
+.dropdown li:hover {
+ background-color: #4c9e9e;
+}
+}
+
+/*TABLE*/
+
+.table {
+  margin: 0;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  width: 65%;
+}
+
+td,th {
+  padding: 0.5em;
+  text-align: center;
+  border: 1px solid teal;
+  color: teal !important;
+  font: 100% sans-serif
+  }
+
+th{
+    background-color: #4ae2c9 !important;
+    font-weight: bolder;
+}
+
+input:placeholder-shown {
+  border-color: teal;
+  color: purple;
+  font-style: italic;
+  text-align: center;
+  width: auto
+}
+
+/*BOTONES TABLA*/
+.btn-danger{color:#fff;background-color:#dc3545;border-color:#dc3545}
+.btn-danger:hover{color:#fff;background-color:#c82333;border-color:#bd2130}
+.btn-danger:focus{color:#fff;background-color:#c82333;border-color:#bd2130;box-shadow:0 0 0 .2rem rgba(225,83,97,.5)}
+.btn-danger:disabled{color:#fff;background-color:#dc3545;border-color:#dc3545}
+.btn-danger{font: 100% sans-serif}
+.btn-info{color:#fff;background-color:#17a2b8;border-color:#17a2b8}
+.btn-info:hover{color:#fff;background-color:#138496;border-color:#117a8b}
+.btn-info:focus{color:#fff;background-color:#138496;border-color:#117a8b;box-shadow:0 0 0 .2rem rgba(58,176,195,.5)}
+.btn-info:disabled{color:#fff;background-color:#17a2b8;border-color:#17a2b8}
+.btn-info{font: 100% sans-serif}
+.btn-outline-success{color:#28a745;border-color:#28a745}
+.btn-outline-success:hover{color:#fff;background-color:#28a745;border-color:#28a745}
+.btn-outline-success:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
+.btn-outline-success:disabled{color:#28a745;background-color:transparent}
+.btn-outline-success{font: 100% sans-serif}
+
+/*SELECT DE TABLA*/
+
+ .select {
+  color:teal !important;
+  font: 100% sans-serif;
+  text-align: center !important;
+  font-style: italic;
+}
+
+.padre {
+  height: 70vh;
+
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.padre_1 {
+  height: 30vh;
+
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hijo {
+  background-color: rgba(0, 0, 0, .5);
+  color: #fff;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size:1em;
+  width: 60%;
+  line-height: 2em;
+}
+
+
+.footer {
+  position:fixed;
+  bottom:5%;
+  left:0;
+  width:100%;
+  height: 2%;
+  background-color: teal;
+
+}
+
+.footer img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 40%;
+  margin-top: 0.01rem;
+}
+.table_1{
+  border-collapse: collapse;
+  background-color: teal;
+  width: 100%;
+  font: 90% sans-serif ;
+  height: 3rem;
+}
+
+.table_1 th {
+  background-color: teal !important;
+  font-weight: bolder;
+}
+
+.table_1 td,th {
+  padding: 0.5em;
+  text-align: center;
+  border: 1px solid teal;
+  color: white !important;
+  font: 90% sans-serif;
+  width:33%;
+  }
+
+.table_1 a{
+ color: white;
+ font: 1em sans-serif;
+ text-align: right !important;
+ color: white;
+}
+
+.social-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item{
+  list-style: none;
+}
+
+.social-icon__link {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}

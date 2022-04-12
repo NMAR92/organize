@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Organize</title>
+    <link rel="icon" type="/static/css/img/favicon.ico" href="/static/img/favicon.ico">
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <link rel="stylesheet" href="/static/css/login_0.css" />
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+                <h3>Organize</h3>
+        <div class="fadeIn first">
+            <img src="/static/img/logo_organize.png" src="/static/img/logo_organize.png" type="/static/img/logo_organize.png" height="120" width="98"/>
+        </div>
+        <form action="" method="post" autocomplete="off">
+            <input type="text"
+                   id="mail"
+                   class="fadeIn second"
+                   name="mail"
+                   placeholder="mail"
+                   value="{{request.form.login }}" required>
+            <input type="text"
+                   id="clave"
+                   class="fadeIn third"
+                   name="clave"
+                   placeholder="contraseña"
+                   value="{{request.form.password }}" required>
+            <input type="submit" class="fadeIn fourth" value="Entrar">
+        </form>
+        {% if error %}
+        <p><strong> {{ error }}</strong> </p>
+        {% endif %}
+        <div id="formFooter">
+            <a href="{{ url_for('registro') }}">Registrarse</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

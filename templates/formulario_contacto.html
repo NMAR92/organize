@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Organize</title>
+    <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/login_1.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h1>Formulario de contacto</h1>
+        <div class="fadeIn first">
+            <img src="static/img/logo_organize.png" height="100" width="98"/>
+        </div>
+        <form action="" method="post" autocomplete="off">
+            <input type="text"
+                   id="nombre"
+                   class="fadeIn second"
+                   name="nombre"
+                   placeholder="usuario"
+                   value="{{ request.form.nombre }}" required >
+            <input type="text"
+                   id="mail"
+                   class="fadeIn third"
+                   name="mail"
+                   placeholder="mail de contacto"
+                   value="{{ request.form.mail }}" required >
+            <p><textarea name="mensaje" class="fadeIn fourth" id="mensaje" placeholder="Deja aquí tu comentario..." value="{{ request.form.mensaje }}" required></textarea></p>
+
+            <input type="submit" class="fadeIn fourth" value="Enviar">
+        </form>
+
+    </div>
+</div>
+</body>
+
+</html>

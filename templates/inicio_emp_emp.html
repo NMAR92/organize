@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="stylesheet" href="/static/css/inicio.css"/>
+   <title>Organize</title>
+   <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+ </head>
+ <body>
+   <nav class="navbar">
+     <!-- LOGO -->
+     <div class="title"><h1>Organize Emprendedor</h1></div>
+     <!-- NAVIGATION MENU -->
+     <ul class="nav-links">
+       <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!-- NAVIGATION MENUS -->
+       <div class="menu">
+         <li class="services">
+           <a href="/inicio_emp_emp">Agendas</a>
+           <ul class="dropdown">
+             <li><a href="/inicio_emp">Con cliente </a></li>
+             <li><a href="/inicio_emp_emp">Con mi empresa</a></li>
+             <li><a href="/inicio_ag_emp">Agenda a ofrecer</a></li>
+           </ul>
+         </li>
+         <li class="services">
+           <a href="/inicio_emp_emp">Usuario</a>
+           <ul class="dropdown">
+             <li><a href="{{url_for('actualizar_usuario')}}">Actualizar </a></li>
+             <li><a href="{{url_for('borrar_usuario')}}">Borrar</a></li>
+             <li><a href="/logout">Logout</a></li>
+           </ul>
+         </li>
+         <li><a href="/nosotros_emp">Nosotros</a></li>
+       </div>
+     </ul>
+   </nav>
+   <div class="title"><h2>-Bienvenido a Organize {{usuario['nombre']}}-</h2></div>
+   <br>
+   <div class="title"><h3>Agenda del emprendimiento</h3></div>
+   <form action="" method="post" autocomplete="off">
+                <table class="table" border="1" style="margin: 0 auto;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nivel Prioridad</th>
+                            <th scope="col">Actividad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Insumo</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="number" id="nivel_prioridad" name="nivel_prioridad" value="nivel_prioridad" class="select"  min="0"/></td>
+                        <td><input type="text" id="actividad" name="actividad" value="actividad" class="select" placeholder="actividad"/></td>
+                        <td><input type="date" id="fecha" name="fecha" value="fecha" class="select"/></td>
+                        <td><input type="time" id="hora" name="hora" value="hora" class="select"/></td>
+                        <td><input type="text" id="insumo" name="insumo" value="insumo" class="select" placeholder="insumo"/></td>
+                        <td><form method="post">
+                                <button type="submit" class="btn btn-outline-success my-2 my-sm-0" formaction="/inicio_emp_emp/agregar">Agregar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                    {% for horario in horarios %}
+                        <td>{{horario.nivel_prioridad}}</td>
+                        <td>{{horario.actividad}}</td>
+                        <td>{{horario.fecha}}</td>
+                        <td>{{horario.hora}}</td>
+                        <td>{{horario.insumo}}</td>
+                        <td><form method="post">
+                                <button type="submit" class="btn btn-danger" formaction="/inicio_emp_emp/{{horario.agendar_emp_id}}/eliminar">Eliminar</button>
+                            </form>
+                            <form method="get">
+                                <button type="submit" class="btn btn-info" formaction="/inicio_emp_emp/{{horario.agendar_emp_id}}/editar">Editar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+   </form>
+
+   <br>
+   <br>
+   <br>
+       <div class="footer">
+           <table class="table_1">
+               <thead>
+                <tr>
+                    <th><a href="/formulario_contacto">Formulario de contacto</a></th>
+                    <th><img src="static/img/logo_chico_organize.png" /></th>
+                    <th><ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul></th>
+                </tr>
+               </thead>
+           </table>
+       </div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</html>

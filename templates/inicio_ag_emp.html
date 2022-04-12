@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="stylesheet" href="/static/css/inicio.css"/>
+   <title>Organize</title>
+   <link rel="icon" type="/static/css/img/favicon.png" href="/static/img/favicon.png">
+ </head>
+ <body>
+   <nav class="navbar">
+     <!-- LOGO -->
+     <div class="title"><h1>Organize Emprendedor</h1></div>
+     <!-- NAVIGATION MENU -->
+     <ul class="nav-links">
+       <!-- USING CHECKBOX HACK -->
+       <input type="checkbox" id="checkbox_toggle" />
+       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+       <!-- NAVIGATION MENUS -->
+       <div class="menu">
+         <li class="services">
+           <a href="/inicio_emp">Agendas</a>
+           <ul class="dropdown">
+             <li><a href="/inicio_emp">Con cliente </a></li>
+             <li><a href="/inicio_emp_emp">Con mi empresa</a></li>
+             <li><a href="/inicio_ag_emp">Agenda a ofrecer</a></li>
+           </ul>
+         </li>
+         <li class="services">
+           <a href="/inicio_emp">Usuario</a>
+           <ul class="dropdown">
+             <li><a href="{{url_for('actualizar_usuario')}}">Actualizar </a></li>
+             <li><a href="{{url_for('borrar_usuario')}}">Borrar</a></li>
+             <li><a href="/logout">Logout</a></li>
+           </ul>
+         </li>
+         <li><a href="/nosotros_emp">Nosotros</a></li>
+       </div>
+     </ul>
+   </nav>
+   <div class="title"><h2>-Bienvenido a Organize {{usuario['nombre']}}-</h2></div>
+   <br>
+   <div class="title"><h3>Formato de agenda a ofrecer</h3></div>
+                         <form action="" method="post" autocomplete="off">
+                            <table  class="table" border="1" style="margin: 0 auto;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Hora inicio</th>
+                                        <th scope="col">Minutos inicio</th>
+                                        <th scope="col">Hora final</th>
+                                        <th scope="col">Minutos final</th>
+                                        <th scope="col">Minutos duración agenda</th>
+                                        <th scope="col">Días a trabajar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input class="select" type="number" id="hora_inicio"  name="hora_inicio"  min="0" max="24" step="1" value="{{request.form.hora_inicio}}" required></td>
+                                        <td><input class="select" type="number" id="min_inicio"  name="min_inicio"  min="0" max="45" step="15" value="{{request.form.min_inicio}}" required></td>
+                                        <td><input class="select" type="number" id="hora_final"  name="hora_final"  min="0" max="24" step="1" value="{{request.form.hora_final}}" required></td>
+                                        <td><input class="select" type="number" id="min_final"  name="min_final"  min="0" max="45" step="15" value="{{request.form.min_final}}" required></td>
+                                        <td><input class="select" type="number" id="duracion_agenda"  name="duracion_agenda" placeholder="minutos de agenda" min="0" step="1" value="{{request.form.duracion_agenda}}" required></td>
+                                        <td><select name="dias_semana" id="dias_semana"  class="select" value="{{ request.form.dias_semana}}" required>
+                                            <option value="a"> Elige dias a trabajar</option>
+                                            <option value=5>Lun-Vier</option>
+                                            <option value=6>Lun-Sab</option>
+                                            <option value=7>Todos los días</option>
+                                        </select>
+                                        </td>
+                                        <td>
+                                            <form method="post">
+                                                <button type="submit" class="btn btn-outline-success my-2 my-sm-0" formaction="/inicio_ag_emp/agregar">Guardar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% for formato in formatos %}
+                                        <tr>
+                                            <td>{{formato.hora_inicio}}</td>
+                                            <td>{{formato.min_inicio}}</td>
+                                            <td>{{formato.hora_final}}</td>
+                                            <td>{{formato.min_final}}</td>
+                                            <td>{{formato.duracion_agenda}}</td>
+                                            <td>{{formato.dias_semana}}</td>
+                                            <td>
+                                                <form method="post">
+                                                    <button type="submit" class="btn btn-danger" formaction="/inicio_ag_emp/{{formato.agendar_ofer_id}}/eliminar">Eliminar</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+         <div class="padre_1">
+            <div class="hijo">En la tabla formato de agenda a ofrecer debe estar guarda una única fila que indique el formato de agenda que desea ofrecer a sus clientes. <br>
+                La agenda ofrecida al cliente sera para los próximos siete días corridos desde la fecha de consulta. <br>
+            </div>
+         </div>
+   <br>
+   <br>
+   <br>
+       <div class="footer">
+           <table class="table_1">
+               <thead>
+                <tr>
+                    <th><a href="/formulario_contacto">Formulario de contacto</a></th>
+                    <th><img src="static/img/logo_chico_organize.png" /></th>
+                    <th><ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul></th>
+                </tr>
+               </thead>
+           </table>
+       </div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</html>
